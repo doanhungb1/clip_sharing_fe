@@ -25,9 +25,18 @@ class AuthService {
   }
 
   register( email, password) {
-    return axios.post(API_URL + "sign_up", {
+    return axios.post(API_URL, {
       user: { email, password }
+    })
+    .then(response => {
+      if (response.headers.authorization) {
+        localStorage.setItem("user", JSON.stringify(response.data));
+        localStorage.setItem("jwt-token", response.headers.authorization);
+      }
+
+      return response.data;
     });
+    ;
   }
 
   getCurrentUser() {

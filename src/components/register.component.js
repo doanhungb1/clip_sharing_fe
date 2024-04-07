@@ -3,8 +3,11 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
+import { Navigate } from "react-router-dom";
 
 import AuthService from "../services/auth.service";
+
+import { withRouter } from '../common/with-router';
 
 const required = value => {
   if (!value) {
@@ -36,7 +39,7 @@ const vpassword = value => {
   }
 };
 
-export default class Register extends Component {
+class Register extends Component {
   constructor(props) {
     super(props);
     this.handleRegister = this.handleRegister.bind(this);
@@ -44,7 +47,6 @@ export default class Register extends Component {
     this.onChangePassword = this.onChangePassword.bind(this);
 
     this.state = {
-      email: "",
       email: "",
       password: "",
       successful: false,
@@ -80,22 +82,20 @@ export default class Register extends Component {
         this.state.email,
         this.state.password
       ).then(
-        response => {
-          this.setState({
-            message: response.data.message,
-            successful: true
-          });
+        () => {
+          this.props.router.navigate("/home");
+          window.location.reload();
         },
         error => {
           const resMessage =
             (error.response &&
               error.response.data &&
-              error.response.data.message) ||
+              error.response.data.messages[0]) ||
             error.message ||
             error.toString();
 
           this.setState({
-            successful: false,
+            loading: false,
             message: resMessage
           });
         }
@@ -177,3 +177,5 @@ export default class Register extends Component {
     );
   }
 }
+
+export default withRouter(Register);

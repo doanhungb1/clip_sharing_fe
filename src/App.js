@@ -66,27 +66,11 @@ class App extends Component {
                 Shared Clips
               </Link>
               <div className="navbar-nav mr-auto">
-                <li className="nav-item">
-                  <Link to={"/home"} className="nav-link">
-                    Home
-                  </Link>
-                </li>
 
                 {currentUser && (
                   <li className="nav-item">
-                    <Link to={"/add"} className="nav-link">
+                    <Link to={"/share"} className="nav-link">
                       Add shared clip
-                    </Link>
-                  </li>
-
-                )}
-
-
-
-                {currentUser && (
-                  <li className="nav-item">
-                    <Link to={"/profile"} className="nav-link">
-                      User
                     </Link>
                   </li>
 
@@ -97,7 +81,7 @@ class App extends Component {
                 <div className="navbar-nav ml-auto">
                   <li className="nav-item">
                     <Link to={"/profile"} className="nav-link">
-                      {currentUser.username}
+                      {currentUser.user.email}
                     </Link>
                   </li>
                   <li className="nav-item">
@@ -133,7 +117,7 @@ class App extends Component {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/add" element={<AddSharedClip/>} />
+            <Route path="/share" element={<AddSharedClip/>} />
           </Routes>
         </div>
 
