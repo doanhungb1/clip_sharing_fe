@@ -30,3 +30,52 @@ label {
   -webkit-border-radius: 50%;
   border-radius: 50%;
 }
+
+/* Modal container */
+.modal {
+  display: block;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+}
+
+/* Modal content */
+.modal-content {
+  background-color: white;
+  margin: 5% auto; /* Center the modal vertically */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 600px; /* Maximum width of the modal */
+  position: relative;
+}
+
+/* Close button */
+.close-button {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Title */
+.modal-content h2 {
+  margin-top: 0;
+}
+
+/* Description */
+.modal-content p {
+  margin-top: 10px;
+}

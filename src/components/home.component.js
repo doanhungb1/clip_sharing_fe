@@ -1,9 +1,7 @@
-import React, { Component } from "react";
+import React, { Component, useEffect  } from "react";
 import SharedClipService from "../services/shared-clip.service";
-import AuthService from "../services/auth.service";
 import SharedClipComponent from './shared-clip.component';
-
-
+import NotificationComponent from './notification.component';
 
 export default class Home extends Component {
   constructor(props) {
@@ -48,9 +46,12 @@ export default class Home extends Component {
 
     return (
       <div className="container">
+        <div>
+          <NotificationComponent />
+        </div>
         <div className="list row">
           <div className="col-md-12">
-            <h4>Shared Clips List</h4>
+            <h4 className="text-sm">Shared Clips List</h4>
 
             <ul className="list-group">
               {sharedClips &&
