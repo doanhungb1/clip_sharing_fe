@@ -82,7 +82,7 @@ class Register extends Component {
         this.state.password
       ).then(
         () => {
-          this.props.router.navigate("/home");
+          this.props.router.navigate("/");
           window.location.reload();
         },
         error => {
