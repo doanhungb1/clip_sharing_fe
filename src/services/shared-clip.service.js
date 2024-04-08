@@ -1,7 +1,7 @@
 import axios from 'axios';
 import authHeader from './auth-header';
 
-const API_URL = 'http://localhost:3001/shared_clips/';
+const API_URL = process.env.REACT_APP_API_ENDPOINT + 'shared_clips/';
 
 class SharedClipService {
   getAll(page, per) {

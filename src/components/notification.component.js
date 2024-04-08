@@ -3,7 +3,7 @@ import { useActionCable, useChannel } from '@aersoftware/react-use-action-cable'
 import authHeader from '../services/auth-header';
 
 const NotificationComponent = () => {
-  const { actionCable } = useActionCable(`ws://localhost:3001/cable?token=${authHeader().Authorization}`);
+  const { actionCable } = useActionCable(`${process.env.REACT_APP_API_ENDPOINT}cable?token=${authHeader().Authorization}`);
   const { subscribe, unsubscribe } = useChannel(actionCable);
   const [notification, setNotification] = useState(null);
 
