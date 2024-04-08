@@ -1,7 +1,10 @@
-import React, { Component, useEffect  } from "react";
+import React, { Component } from "react";
 import SharedClipService from "../services/shared-clip.service";
 import SharedClipComponent from './shared-clip.component';
 import NotificationComponent from './notification.component';
+import { Navigate } from "react-router-dom";
+import AuthService from "../services/auth.service";
+
 
 export default class Home extends Component {
   constructor(props) {
@@ -13,12 +16,22 @@ export default class Home extends Component {
       sharedClips: [],
       currentIndex: -1,
       currentPage: 1,
-      itemPerPage: 25
+      itemPerPage: 25,
+      redirect: null
     };
   }
 
   componentDidMount() {
-    this.retrieveSharedClips();
+    AuthService.getCurrentUser().then(
+      () => {
+        this.retrieveSharedClips();
+      },
+      () => {
+        this.setState({ redirect: "/login" })
+      }
+    );
+
+
   }
 
   retrieveSharedClips() {
@@ -42,6 +55,10 @@ export default class Home extends Component {
   }
 
   render() {
+    if (this.state.redirect) {
+      return <Navigate to={this.state.redirect} />
+    }
+
     const { sharedClips } = this.state;
 
     return (
